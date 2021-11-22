@@ -53,7 +53,7 @@ var strings = new[] { "zero", "one", "two", "three",
 
 var bookdir = @"C:\Users\Student\source\repos\CNET2\Books";
 
-foreach(var file in GetFilesFromDir(bookdir))
+/*foreach(var file in GetFilesFromDir(bookdir))
 {
     var dict = TextTools.FreqAnalysis(file);
     var top10 = TextTools.GetTopWords(10, dict);
@@ -63,7 +63,7 @@ foreach(var file in GetFilesFromDir(bookdir))
     Console.WriteLine("KNIHA: " + fi.Name);
     PrintList(top10.Select(x => $"{x.Key} : {x.Value}").ToList());
     Console.WriteLine();
-}
+}*/
 
 
 
@@ -73,19 +73,7 @@ Console.WriteLine();
 
 foreach (var file in Directory.GetFiles("Books"))
 {
-    var countWords = TopTenWords(File.ReadAllText(file));
-}
-
-static Dictionary<string, int> TopTenWords(string fileString)
-{
-    var wordsCount = fileString.Split(" ").GroupBy(x => x).Select(g => (Word: g.Key, Count: g.Count())).OrderByDescending(p => p.Count).Take(10);
-    Dictionary<string, int> dict = new Dictionary<string, int>();
-    foreach (var tuple in wordsCount)
-    {
-        dict.Add(tuple.Word, tuple.Count);
-    }
-
-    return dict;
+    var countWords = TextTools.TextTools.TopTenWords(File.ReadAllText(file));
 }
 
 
