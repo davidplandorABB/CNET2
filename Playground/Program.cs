@@ -41,18 +41,6 @@ var strings = new[] { "zero", "one", "two", "three",
 //   (agg, item) => agg + item);
 //Console.WriteLine(res);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-var aggregated = string.Join("", strings); //spojim slova do jednoho retece
-var result = aggregated // pracuji se stringem jako s kolekci znaku
-    .GroupBy(x => x) // seskupuji podle pismenek (char v koleci string)
-    .Select(g => (Letter: g.Key,Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
-    .OrderBy(x => x.Count)
-    .ThenByDescending(x => x.Letter)
-    ;
-=======
-=======
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
 //var aggregated = string.Join("", strings); //spojim slova do jednoho retece
 //var result = aggregated // pracuji se stringem jako s kolekci znaku
 //    .GroupBy(x => x) // seskupuji podle pismenek (char v koleci string)
@@ -60,82 +48,32 @@ var result = aggregated // pracuji se stringem jako s kolekci znaku
 //    .OrderBy(x => x.Count)
 //    .ThenByDescending(x => x.Letter)
 //    ; 
-<<<<<<< HEAD
-=======
 
 // Dictionary - https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-6.0
 
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+var bookdir = @"C:\Users\Student\source\repos\CNET2\Books";
 
-// Dictionary - https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-6.0
+foreach(var file in GetFilesFromDir(bookdir))
+{
+    var dict = TextTools.FreqAnalysis(file);
+    var top10 = TextTools.GetTopWords(10, dict);
 
-<<<<<<< HEAD
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
-=======
-var dict = CharFreq("abrakadabra");
+    var fi = new FileInfo(file);
+    
+    Console.WriteLine("KNIHA: " + fi.Name);
+    PrintList(top10.Select(x => $"{x.Key} : {x.Value}").ToList());
+    Console.WriteLine();
+}
+
+
+
 
 Console.WriteLine();
 
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
 
-//var dict = CharFreq("abrakadarbra");
-//Console.WriteLine();
+//PrintList(result.ToList());
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-//PrintList(result.ToList())
 //PrintItems<(char, int)>(result);
-
-foreach(var file in Directory.GetFiles("Books"))
-{
-    var countWords = TopTenWords(File.ReadAllText(file));
-}
-
-static Dictionary<string, int> TopTenWords(string fileString)
-{
-    var wordsCount = fileString.Split(" ").GroupBy(x => x).Select(g => (Word: g.Key, Count: g.Count())).OrderByDescending(p => p.Count).Take(10);
-    Dictionary<string, int> dict = new Dictionary<string, int>();
-    foreach (var tuple in wordsCount)
-    {
-        dict.Add(tuple.Word, tuple.Count);
-    }
-
-    return dict;
-}
-=======
-var dict = CharFreq("abrakadabra");
-
-Console.WriteLine();
-
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
-
-
-<<<<<<< HEAD
-=======
-//PrintItems<(char, int)>(result);
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
-=======
-//PrintItems<(char, int)>(result);
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
-
-
-foreach (var file in Directory.GetFiles("Books"))
-{
-    var countWords = TopTenWords(File.ReadAllText(file));
-}
-
-static Dictionary<string, int> TopTenWords(string fileString)
-{
-    var wordsCount = fileString.Split(" ").GroupBy(x => x).Select(g => (Word: g.Key, Count: g.Count())).OrderByDescending(p => p.Count).Take(10);
-    Dictionary<string, int> dict = new Dictionary<string, int>();
-    foreach (var tuple in wordsCount)
-    {
-        dict.Add(tuple.Word, tuple.Count);
-    }
-
-    return dict;
-}
-
 
 static void PrintList(List<string> listToPrint)
 {
@@ -155,21 +93,6 @@ static void PrintItems<T>(IEnumerable<T> items)
 
 static Dictionary<char, int> CharFreq(string input)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var tuples = input.GroupBy(x => x)
-   .Select(g => (Letter: g.Key, Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
-   .OrderBy(x => x.Count)
-   .ThenByDescending(x => x.Letter);
-
-
-    Dictionary<char, int> dict = new Dictionary<char, int>();
-    foreach (var tuple in tuples)
-    {
-        dict.Add(tuple.Letter,tuple.Count);
-=======
-=======
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
     var tuples = input.GroupBy(x => x) // seskupuji podle pismenek (char v koleci string)
     .Select(g => (Letter: g.Key, Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
     .OrderBy(x => x.Count)
@@ -180,11 +103,12 @@ static Dictionary<char, int> CharFreq(string input)
     foreach (var tuple in tuples)
     {
         dict.Add(tuple.Letter, tuple.Count);
-<<<<<<< HEAD
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
-=======
->>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
     }
 
     return dict;
+}
+
+static IEnumerable<string> GetFilesFromDir(string dir)
+{
+    return Directory.EnumerateFiles(dir);
 }
