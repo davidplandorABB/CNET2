@@ -118,6 +118,25 @@ Console.WriteLine();
 //PrintItems<(char, int)>(result);
 >>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
 
+
+foreach (var file in Directory.GetFiles("Books"))
+{
+    var countWords = TopTenWords(File.ReadAllText(file));
+}
+
+static Dictionary<string, int> TopTenWords(string fileString)
+{
+    var wordsCount = fileString.Split(" ").GroupBy(x => x).Select(g => (Word: g.Key, Count: g.Count())).OrderByDescending(p => p.Count).Take(10);
+    Dictionary<string, int> dict = new Dictionary<string, int>();
+    foreach (var tuple in wordsCount)
+    {
+        dict.Add(tuple.Word, tuple.Count);
+    }
+
+    return dict;
+}
+
+
 static void PrintList(List<string> listToPrint)
 {
     foreach (var item in listToPrint)
