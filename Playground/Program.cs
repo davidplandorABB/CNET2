@@ -47,13 +47,32 @@ var result = aggregated // pracuji se stringem jako s kolekci znaku
     .Select(g => (Letter: g.Key,Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
     .OrderBy(x => x.Count)
     .ThenByDescending(x => x.Letter)
-    ; 
+    ;
+
+//var dict = CharFreq("abrakadarbra");
+//Console.WriteLine();
+
+//PrintList(result.ToList())
+//PrintItems<(char, int)>(result);
+
+foreach(var file in Directory.GetFiles("Books"))
+{
+    var countWords = TopTenWords(File.ReadAllText(file));
+}
+
+static Dictionary<string, int> TopTenWords(string fileString)
+{
+    var wordsCount = fileString.Split(" ").GroupBy(x => x).Select(g => (Word: g.Key, Count: g.Count())).OrderByDescending(p => p.Count).Take(10);
+    Dictionary<string, int> dict = new Dictionary<string, int>();
+    foreach (var tuple in wordsCount)
+    {
+        dict.Add(tuple.Word, tuple.Count);
+    }
+
+    return dict;
+}
 
 
-
-//PrintList(result.ToList());
-
-PrintItems<(char, int)>(result);
 
 static void PrintList(List<string> listToPrint)
 {
@@ -69,4 +88,21 @@ static void PrintItems<T>(IEnumerable<T> items)
     {
         Console.WriteLine(item);
     }
+}
+
+static Dictionary<char, int> CharFreq(string input)
+{
+    var tuples = input.GroupBy(x => x)
+   .Select(g => (Letter: g.Key, Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
+   .OrderBy(x => x.Count)
+   .ThenByDescending(x => x.Letter);
+
+
+    Dictionary<char, int> dict = new Dictionary<char, int>();
+    foreach (var tuple in tuples)
+    {
+        dict.Add(tuple.Letter,tuple.Count);
+    }
+
+    return dict;
 }
