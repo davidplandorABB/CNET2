@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+<<<<<<< HEAD
     <None Remove="Books\alice.txt" />
     <None Remove="Books\holmes.txt" />
     <None Remove="Books\rur.txt" />
@@ -23,6 +25,22 @@
     <Content Include="Books\rur.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+=======
+=======
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+    <None Update="alice.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="holmes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="rur.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+<<<<<<< HEAD
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+=======
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
   </ItemGroup>
 
 </Project>

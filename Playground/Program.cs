@@ -36,11 +36,13 @@ var strings = new[] { "zero", "one", "two", "three",
 // polozkach pole strings (kombinovane - v celem poli)
 
 // agregace - https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable.aggregate?view=net-6.0
-var res = strings.Aggregate(
-   "", // start with empty string to handle empty list case.
-   (agg, item) => agg + item);
-Console.WriteLine(res);
+//var res = strings.Aggregate(
+//   "", // start with empty string to handle empty list case.
+//   (agg, item) => agg + item);
+//Console.WriteLine(res);
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 var aggregated = string.Join("", strings); //spojim slova do jednoho retece
 var result = aggregated // pracuji se stringem jako s kolekci znaku
     .GroupBy(x => x) // seskupuji podle pismenek (char v koleci string)
@@ -48,10 +50,39 @@ var result = aggregated // pracuji se stringem jako s kolekci znaku
     .OrderBy(x => x.Count)
     .ThenByDescending(x => x.Letter)
     ;
+=======
+=======
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+//var aggregated = string.Join("", strings); //spojim slova do jednoho retece
+//var result = aggregated // pracuji se stringem jako s kolekci znaku
+//    .GroupBy(x => x) // seskupuji podle pismenek (char v koleci string)
+//    .Select(g => (Letter: g.Key,Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
+//    .OrderBy(x => x.Count)
+//    .ThenByDescending(x => x.Letter)
+//    ; 
+<<<<<<< HEAD
+=======
+
+// Dictionary - https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-6.0
+
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+
+// Dictionary - https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-6.0
+
+<<<<<<< HEAD
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+=======
+var dict = CharFreq("abrakadabra");
+
+Console.WriteLine();
+
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
 
 //var dict = CharFreq("abrakadarbra");
 //Console.WriteLine();
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 //PrintList(result.ToList())
 //PrintItems<(char, int)>(result);
 
@@ -71,8 +102,21 @@ static Dictionary<string, int> TopTenWords(string fileString)
 
     return dict;
 }
+=======
+var dict = CharFreq("abrakadabra");
+
+Console.WriteLine();
+
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
 
 
+<<<<<<< HEAD
+=======
+//PrintItems<(char, int)>(result);
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+=======
+//PrintItems<(char, int)>(result);
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
 
 static void PrintList(List<string> listToPrint)
 {
@@ -92,6 +136,8 @@ static void PrintItems<T>(IEnumerable<T> items)
 
 static Dictionary<char, int> CharFreq(string input)
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
     var tuples = input.GroupBy(x => x)
    .Select(g => (Letter: g.Key, Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
    .OrderBy(x => x.Count)
@@ -102,6 +148,23 @@ static Dictionary<char, int> CharFreq(string input)
     foreach (var tuple in tuples)
     {
         dict.Add(tuple.Letter,tuple.Count);
+=======
+=======
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+    var tuples = input.GroupBy(x => x) // seskupuji podle pismenek (char v koleci string)
+    .Select(g => (Letter: g.Key, Count: g.Count())) // udelam tuple obsahujici klic (pismenko) a pocet prvku
+    .OrderBy(x => x.Count)
+    .ThenByDescending(x => x.Letter);
+
+    Dictionary<char, int> dict = new Dictionary<char, int>();
+
+    foreach (var tuple in tuples)
+    {
+        dict.Add(tuple.Letter, tuple.Count);
+<<<<<<< HEAD
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
+=======
+>>>>>>> 029be2d38cb49fc17e812a5ead57a3644acf1c43
     }
 
     return dict;
