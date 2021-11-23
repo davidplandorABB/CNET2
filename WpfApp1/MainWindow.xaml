@@ -7,8 +7,14 @@
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock x:Name="txbInfo">
-            
-        </TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" x:Name="bLoad" Content="Load" Width="50" Height="30" Click="bLoad_Click" />
+        <ScrollViewer Grid.Row="1" >
+            <TextBlock x:Name="txbInfo" />
+        </ScrollViewer>
+
     </Grid>
 </Window>
