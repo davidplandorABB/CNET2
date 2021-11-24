@@ -11,10 +11,19 @@
             <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" x:Name="bLoad" Content="Load" Width="50" Height="30" Click="bLoad_Click" />
-        <ScrollViewer Grid.Row="1" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ProgressBar Grid.Column="1" Grid.Row="0" x:Name="pbLoadStatus" Height="20" Width="250" />
+        <Button Grid.Row="0" x:Name="bLoad" Content="Load Async" Height="30" Click="bLoad_Click" Margin="20,25,305,25" />
+        <Button Grid.Row="0" x:Name="bLoadAll" Content="Load All" Height="30" Click="bLoadAll_Click" Margin="115,25,230,25" />
+        <Button Grid.Row="0" x:Name="bLoadAllParalel" Content="Load Paralel" Height="30" Click="bLoadAllParalel_Click" Margin="190,25,135,25" />
+        <ScrollViewer Grid.Row="1" Grid.Column="0"  >
             <TextBlock x:Name="txbInfo" />
         </ScrollViewer>
-
+        <ScrollViewer Grid.Row="1" Grid.Column="1" >
+            <TextBlock x:Name="txbTimeInfo" />
+        </ScrollViewer>
     </Grid>
 </Window>

@@ -8,6 +8,14 @@ var strings = new[] { "zero", "one", "two", "three",
                         "four", "five", "six", "seven",
                         "eight", "nine" };
 
+HttpClient httpClient = new HttpClient();
+
+var res = await httpClient.GetAsync("https://google.com");
+if (res.IsSuccessStatusCode)
+{
+    string content = await res.Content.ReadAsStringAsync();
+}
+
 // 1 strings - pomocí LINQu vytvořte nové pole kde jsou všechna slova uppercase
 //var result = strings.Select(x => x.ToUpper());
 
@@ -51,7 +59,7 @@ var strings = new[] { "zero", "one", "two", "three",
 
 // Dictionary - https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-6.0
 
-var bookdir = @"C:\Users\Student\source\repos\CNET2\Books";
+//var bookdir = @"C:\Users\Student\source\repos\CNET2\Books";
 
 /*foreach(var file in GetFilesFromDir(bookdir))
 {
@@ -65,10 +73,29 @@ var bookdir = @"C:\Users\Student\source\repos\CNET2\Books";
     Console.WriteLine();
 }*/
 
+var task1 = Task.Run(() =>
+{
 
+    string text = File.ReadAllText(@"C:\Users\czdapla\source\BigFiles\words09.txt");
+    TextTools.TextTools.TopTenWords(text);
+    Console.WriteLine("Task 1 finished");
+});
 
+var task2 = Task.Run(() =>
+{
 
+    string text = File.ReadAllText(@"C:\Users\czdapla\source\BigFiles\words01.txt");
+    TextTools.TextTools.TopTenWords(text);
+    Console.WriteLine("Task 2 finished");
+});
+
+await Task.WhenAll(task1, task2);
+
+Console.Write("Program finished");
 Console.WriteLine();
+
+
+/*Console.WriteLine();
 
 
 foreach (var file in Directory.GetFiles("Books"))
@@ -118,4 +145,4 @@ static Dictionary<char, int> CharFreq(string input)
 static IEnumerable<string> GetFilesFromDir(string dir)
 {
     return Directory.EnumerateFiles(dir);
-}
+}*/
